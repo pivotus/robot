@@ -5,6 +5,8 @@
   "author": "emrecan@pivot.us",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "htmlparser": "1.7.6",
+    "soupselect": "0.2.0",
     "hubot-maps": "0.0.1",
     "hubot-help": "~0.1.1",
     "hubot-google-images": "~0.1.2",
