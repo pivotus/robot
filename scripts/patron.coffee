@@ -13,9 +13,9 @@ module.exports = (robot) ->
   patrona_cevaplar = ["Siz ne derseniz o!", "Görüşleriniz benim için bir emirdir!", "Derhal!"]
   calisana_cevaplar = ["Beni lafa tutturma, sonra patron bana patlıyor!", "İşim var, hadi başka zaman, hadi bakim...", "Buralar çok karışık birazdan cevap veririm...", "İnşallah canım ya"]
 
-  robot.hear /@(\w+)/i, (msg) ->
+  robot.respond /(\w+)/i, (msg) ->
     sender   = msg.message.user.name.toLowerCase()
     if sender == "baran"
-      msg.reply msg.random patrona_cevaplar
+      msg.send msg.random patrona_cevaplar
     else
-      msg.reply msg.random calisana_cevaplar
+      msg.send msg.random calisana_cevaplar
