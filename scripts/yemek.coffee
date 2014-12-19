@@ -19,9 +19,9 @@ module.exports = (robot) ->
   pide_cevaplari = ["Ofisi biraz kokutacaksın ama bu pide bi harika: ", "Yanında bir şeyler de içmeyi unutma derim: ", "Dün yediysen bugün de yeme ama yine de sen bilirsin, işte önerim: ", "Bugün bi çılgınlık yap ve bunu söyle: "]
   salata_cevaplari = ["Artık değişik salataları da denemelisin. Bugünkü tavsiyem: ", "Bugün de bunu yiyelim diyorum: ", "Belki de hep bunu yiyorsun ama bence bu çok güzel: "]
 
-  robot.respond /bugün ne yesem/i, (msg) ->
+  robot.hear /bugün ne yesem/i, (msg) ->
     msg.reply "#{msg.random yemek_cevaplari} #{msg.random yemekler}"
-  robot.respond /hangi (.*)/i, (msg) ->
+  robot.hear /hangi (.*)/i, (msg) ->
     yemek_tipi = msg.match[1]
     switch yemek_tipi
       when "pide"
