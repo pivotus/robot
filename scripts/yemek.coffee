@@ -19,14 +19,26 @@ module.exports = (robot) ->
   pide_cevaplari = ["Ofisi biraz kokutacaksın ama bu pide bi harika: ", "Yanında bir şeyler de içmeyi unutma derim: ", "Dün yediysen bugün de yeme ama yine de sen bilirsin, işte önerim: ", "Bugün bi çılgınlık yap ve bunu söyle: "]
   salata_cevaplari = ["Artık değişik salataları da denemelisin. Bugünkü tavsiyem: ", "Bugün de bunu yiyelim diyorum: ", "Belki de hep bunu yiyorsun ama bence bu çok güzel: "]
 
-  robot.hear /bugün ne yesem/i, (msg) ->
+  robot.respond /bugün ne yesem/i, (msg) ->
     msg.send "#{msg.random yemek_cevaplari} #{msg.random yemekler}"
-  robot.hear /hangi pide/i, (msg) ->
-    msg.send "#{msg.random pide_cevaplari} #{msg.random pideler}"
-  robot.hear /hangi corba/i, (msg) ->
-    msg.send "#{msg.random salata_cevaplari} #{msg.random salatalar}"
-  robot.hear /hangi salata/i, (msg) ->
-    msg.send "#{msg.random corba_cevaplari} #{msg.random corbalar}"
+  robot.respond /hangi (.*)/i, (msg) ->
+    yemek_tipi = msg.match[1]
+    switch yemek_tipi
+      when "pide"
+        msg.reply "#{msg.random pide_cevaplari} #{msg.random pideler}"
+      when "çorba"
+        msg.send "#{msg.random corba_cevaplari} #{msg.random corbalar}"
+      when "salata"
+        msg.send "#{msg.random salata_cevaplari} #{msg.random salatalar}"
+      else
+        msg.send "Öyle bir yemek çeşidi mi varmış? Hiç haberim yok."
+
+  # robot.hear /hangi pide/i, (msg) ->
+  #   msg.send "#{msg.random pide_cevaplari} #{msg.random pideler}"
+  # robot.hear /hangi çorba/i, (msg) ->
+  #   msg.send "#{msg.random salata_cevaplari} #{msg.random salatalar}"
+  # robot.hear /hangi salata/i, (msg) ->
+  #   msg.send "#{msg.random corba_cevaplari} #{msg.random corbalar}"
 
   #
   # robot.respond /open the (.*) doors/i, (msg) ->
